@@ -1,0 +1,432 @@
+/* =========================================================================
+   Taller de Motocicletas — hoja de estilos única de toda la aplicación.
+   Se referencia localmente (href="estilo.css") en cada página para que el
+   diseño no dependa de ningún CDN externo: funciona igual con o sin
+   conexión a internet (XAMPP/WAMP en local incluido).
+   ========================================================================= */
+
+/* @import debe ir en la primera línea válida de la hoja de estilos (antes de
+   cualquier otra regla); si no, los navegadores lo ignoran silenciosamente.
+   Si no hay conexión a internet no pasa nada: la tipografía cae de forma
+   automática en el resto de la pila (system-ui / Segoe UI / Arial). */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --color-fondo: #f3f1ee;
+    --color-superficie: #ffffff;
+    --color-texto: #26282b;
+    --color-texto-suave: #6b6f76;
+    --color-borde: #e3ddd3;
+
+    --color-oscuro: #22252b;
+    --color-oscuro-2: #2f333b;
+
+    --color-acento: #e2660c;
+    --color-acento-oscuro: #c2530a;
+    --color-acento-suave: #fdece0;
+
+    --color-exito: #1f8a4c;
+    --color-exito-suave: #e6f6ec;
+    --color-peligro: #c62b2b;
+    --color-peligro-suave: #fbe7e7;
+    --color-info: #1a6fb0;
+    --color-info-suave: #e7f2fa;
+    --color-aviso: #b8860b;
+
+    --radio: 10px;
+    --sombra: 0 2px 10px rgba(34, 37, 43, 0.08);
+    --sombra-fuerte: 0 6px 24px rgba(34, 37, 43, 0.16);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+    color: var(--color-oscuro);
+    font-weight: 700;
+    margin: 0.6em 0 0.5em;
+}
+h1 { font-size: 1.7rem; }
+h2 { font-size: 1.25rem; border-bottom: 2px solid var(--color-borde); padding-bottom: 8px; }
+h4 { font-size: 1.05rem; color: var(--color-texto-suave); text-transform: uppercase; letter-spacing: 0.03em; }
+
+a { color: var(--color-acento-oscuro); }
+a:hover { color: var(--color-acento); }
+
+center { display: block; }
+
+/* ---------- Barra superior (topbar.php) ---------- */
+.app-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, var(--color-oscuro), var(--color-oscuro-2));
+    color: #fff;
+    padding: 12px 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.app-topbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+}
+.app-topbar a.app-topbar-brand {
+    background: none;
+    padding: 0;
+    margin-left: 0;
+    text-decoration: none;
+}
+.app-topbar a.app-topbar-brand:hover { background: none; opacity: 0.85; }
+.app-topbar a {
+    color: #fff;
+    text-decoration: none;
+    padding: 7px 16px;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.12);
+    margin-left: 8px;
+    font-size: 0.9rem;
+    transition: background-color 0.15s ease;
+}
+.app-topbar a:hover { background-color: rgba(255, 255, 255, 0.22); color: #fff; }
+.app-topbar a.app-topbar-logout { background-color: var(--color-peligro); }
+.app-topbar a.app-topbar-logout:hover { background-color: #a52222; }
+.app-topbar .app-topbar-right { display: flex; align-items: center; }
+.app-topbar .app-topbar-user { opacity: 0.75; margin-right: 10px; font-size: 0.85rem; }
+
+/* ---------- Contenedores genéricos ---------- */
+.container, .buscar-wrap {
+    width: 90%;
+    max-width: 1000px;
+    margin: 24px auto;
+    text-align: center;
+}
+
+.card, table, form {
+    background-color: var(--color-superficie);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
+
+form {
+    max-width: 460px;
+    margin: 24px auto;
+    padding: 26px 28px;
+    text-align: left;
+    border: 1px solid var(--color-borde);
+}
+form p { margin: 12px 0; }
+form p > label, form label { display: block; margin-bottom: 4px; font-weight: 600; color: var(--color-texto-suave); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.02em; }
+
+/* Formularios de acción en línea (p. ej. el botón "Eliminar" dentro de una
+   ficha de detalle) no deben llevar el aspecto de tarjeta de los formularios
+   de datos. */
+form[style*="display:inline"] {
+    background: none;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    max-width: none;
+    display: inline;
+}
+
+.form-group { margin-bottom: 14px; text-align: left; }
+.form-group label { display: block; margin-bottom: 4px; font-weight: 600; color: var(--color-texto-suave); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.02em; }
+
+/* ---------- Campos de formulario ---------- */
+input[type="text"], input[type="password"], input[type="number"], input[type="date"],
+input[type="email"], input[type="file"], select, textarea, .form-control {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 4px 0 2px;
+    border: 1px solid var(--color-borde);
+    border-radius: 7px;
+    font-size: 0.95rem;
+    background-color: #fbfaf8;
+    color: var(--color-texto);
+    font-family: inherit;
+}
+input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus,
+input[type="date"]:focus, input[type="email"]:focus, select:focus, textarea:focus, .form-control:focus {
+    outline: none;
+    border-color: var(--color-acento);
+    box-shadow: 0 0 0 3px var(--color-acento-suave);
+    background-color: #fff;
+}
+input[readonly] { background-color: #eee; color: #888; }
+
+/* ---------- Botones ---------- */
+/* Nota: los selectores por atributo/etiqueta van envueltos en :where() para
+   que tengan especificidad 0 y las clases de color (.btn-danger, .btn-success,
+   etc.) siempre puedan sobreescribirlos, incluso en <input type="submit">
+   o <input type="reset"> (que de otro modo "ganarían" por especificidad
+   aunque se declaren antes en el CSS). */
+.btn, :where(input[type="submit"], input[type="reset"], button) {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 7px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    background-color: var(--color-acento);
+    transition: filter 0.15s ease, transform 0.05s ease;
+    margin: 4px 2px;
+}
+.btn:hover, input[type="submit"]:hover, button:hover { filter: brightness(0.92); color: #fff; }
+.btn:active, input[type="submit"]:active, button:active { transform: translateY(1px); }
+
+:where(input[type="submit"]), .btn-primary, .btn-blue { background-color: var(--color-acento); }
+:where(input[type="reset"]), .btn-secondary { background-color: #8a8f98; }
+.btn-danger, .btn-red, .btn-delete { background-color: var(--color-peligro); }
+.btn-edit { background-color: var(--color-info); }
+.btn-success { background-color: var(--color-exito); }
+
+/* Botones que envuelven un <a> dentro (patrón usado en algunas fichas) */
+button.btn-edit a, button.btn-danger a, button.btn-primary a { color: #fff; text-decoration: none; }
+
+/* ---------- Tablas anchas (evitan el scroll horizontal de toda la página:
+   sólo se desplaza el contenedor de la tabla, que además queda alineado
+   a la izquierda en vez de forzado al centro) ---------- */
+.table-scroll {
+    max-width: 100%;
+    margin: 20px auto;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+.table-scroll table {
+    margin: 0 0 0 4px;
+    width: max-content;
+    min-width: 100%;
+}
+
+/* Variante para fichas con muchas columnas (p. ej. detalles del cliente):
+   en vez de scroll horizontal, el texto de las celdas hace salto de línea
+   para que la tabla quepa siempre dentro del ancho disponible, sin
+   sobresalir de la pantalla ni necesitar desplazamiento lateral. */
+.table-scroll.table-fit {
+    overflow-x: hidden;
+    padding-bottom: 0;
+}
+.table-scroll.table-fit table {
+    table-layout: fixed;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+.table-scroll.table-fit th,
+.table-scroll.table-fit td {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+.table-scroll.table-fit img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ---------- Tablas ---------- */
+table {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+table.table-bordered, table { border: 1px solid var(--color-borde); }
+th, td {
+    border-bottom: 1px solid var(--color-borde);
+    padding: 11px 14px;
+    text-align: left;
+}
+th {
+    background-color: var(--color-oscuro);
+    color: #fff;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-weight: 600;
+}
+.thead-light th { background-color: var(--color-oscuro); color: #fff; }
+tbody tr:nth-child(even) { background-color: #faf8f5; }
+tbody tr:hover { background-color: var(--color-acento-suave); }
+table a { color: var(--color-acento-oscuro); text-decoration: none; font-weight: 600; }
+table a:hover { text-decoration: underline; }
+
+tfoot.totales td, .totales td { font-weight: 700; background-color: #faf3ea; }
+
+/* ---------- Mensajes / alertas ---------- */
+.message, .error-box {
+    max-width: 640px;
+    margin: 20px auto;
+    padding: 16px 20px;
+    border-radius: var(--radio);
+    font-size: 1rem;
+}
+.message { background-color: var(--color-superficie); box-shadow: var(--sombra); }
+.error-box { background-color: var(--color-peligro-suave); color: var(--color-peligro); text-align: left; }
+.error-message { color: var(--color-peligro); }
+
+/* Los avisos de éxito/error de las páginas *2.php se generan con estilos
+   en línea (color:green / color:red) directamente en el PHP; se mantienen
+   tal cual porque no dependen de ningún CDN y ya son accesibles. */
+
+/* ---------- Menú principal ---------- */
+.menu-search-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 18px 0 26px;
+    flex-wrap: wrap;
+}
+.menu-card { padding: 30px; }
+.menu-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 10px;
+}
+.menu-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+    padding: 22px 10px;
+    border-radius: var(--radio);
+    text-align: center;
+    font-size: 1.05rem;
+    box-shadow: var(--sombra);
+    transition: transform 0.1s ease, filter 0.15s ease;
+}
+.menu-links a:hover { filter: brightness(0.93); transform: translateY(-1px); }
+.menu-links a:nth-child(1) { background-color: #1a6fb0; }
+.menu-links a:nth-child(2) { background-color: var(--color-acento); }
+.menu-links a:nth-child(3) { background-color: var(--color-aviso); }
+.menu-links a:nth-child(4) { background-color: var(--color-peligro); }
+
+.icon-container { display: flex; gap: 10px; }
+.search-icon-btn, .logout-btn {
+    color: #fff;
+    padding: 9px 18px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.search-icon-btn { background-color: rgba(255, 255, 255, 0.12); }
+.search-icon-btn:hover { background-color: rgba(255, 255, 255, 0.22); }
+.search-icon-btn a { color: #fff; text-decoration: none; }
+.logout-btn { background-color: var(--color-peligro); }
+.logout-btn:hover { background-color: #a52222; }
+
+.lila-button { background-color: #7c4fa0; }
+.lila-button:hover { background-color: #6a4189; }
+.azul-button { background-color: #1a6fb0; color: #fff !important; }
+.azul-button:hover { background-color: #155a8f; }
+
+/* ---------- Líneas dinámicas de factura ---------- */
+.detalle_factura, .linea-existente {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    margin-bottom: 10px;
+    background: #faf8f5;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--color-borde);
+}
+.linea-existente { justify-content: space-between; align-items: center; }
+.detalle_factura .form-group { flex: 1; margin-bottom: 0; }
+.quitar-linea {
+    background-color: var(--color-peligro);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 14px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* ---------- Utilidades ---------- */
+.text-center { text-align: center; }
+.my-2 { margin-top: 8px; margin-bottom: 8px; }
+.my-4 { margin-top: 20px; margin-bottom: 20px; }
+
+/* Un poco más de aire entre una tabla de detalle y el siguiente apartado
+   (p. ej. "Facturas de esta motocicleta" / "Líneas de detalle"), sin pasarse. */
+.mt-section { margin-top: 38px; }
+
+/* Fila de botones a la misma altura (p. ej. "Añadir línea de repuesto" +
+   "Continuar"/"Modificar factura" en los formularios de factura). */
+.button-row-inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 18px 0 6px;
+}
+
+/* Los formularios que envuelven un listado con tabla ancha (listar_*.php)
+   no deben llevar su propio aspecto de tarjeta con max-width:460px (pensado
+   para formularios de datos pequeños): eso hacía que la tabla, más ancha,
+   sobresaliera visualmente del formulario. Aquí el formulario queda
+   "invisible" y es la tabla la que aporta la tarjeta blanca. */
+form.list-form {
+    background: none;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    max-width: none;
+    text-align: center;
+}
+
+/* ---------- Login ---------- */
+body.login-page {
+    background: radial-gradient(circle at top, var(--color-oscuro-2), var(--color-oscuro) 70%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-card {
+    background-color: var(--color-superficie);
+    border-radius: 14px;
+    box-shadow: var(--sombra-fuerte);
+    padding: 34px 32px;
+    width: 320px;
+    margin: 0;
+}
+.login-brand {
+    text-align: center;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-oscuro);
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+.login-card form { box-shadow: none; border: none; padding: 0; margin: 0; max-width: none; }
+.login-card input[type="submit"] { width: 100%; margin-top: 10px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+    .menu-links { grid-template-columns: 1fr; }
+    form { width: 92%; padding: 18px; }
+    table { width: 96%; }
+    .detalle_factura { flex-direction: column; align-items: stretch; }
+}
